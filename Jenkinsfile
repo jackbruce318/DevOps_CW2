@@ -38,5 +38,14 @@ pipeline {
 				sh 'docker push jackbruce318/cw2-server:1.0'
 			}
 		}
+
+		stage('Deploy Image') {
+			steps {
+				sshagent(['my-k8s-key]) {
+					sh '''
+					'''
+				}
+			}			
+		}
 	}
 }
