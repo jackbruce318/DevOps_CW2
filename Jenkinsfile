@@ -41,7 +41,7 @@ pipeline {
 
 		stage('Deploy Image') {
 			steps {
-				sshagent(['my-k8s-key]) {
+				sshagent(['my-k8s-key']) {
 					sh '''
 					'''
 				}
