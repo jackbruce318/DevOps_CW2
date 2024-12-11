@@ -9,7 +9,7 @@ pipeline {
 		stage('Docker Image Build') {
 			steps {
 				echo 'Building Docker Image...'
-				sh 'docker build --tag jackbruce318/cw2-server:1.0 .'
+				sh 'docker build --tag jackbruce318/cw2-server:2.0 .'
 				echo 'Docker Image built successfully!'
 			}
 		}
@@ -18,8 +18,8 @@ pipeline {
 			steps {
 				echo 'Testing Docker Image...'
 				sh '''
-					docker image inspect jackbruce318/cw2-server:1.0
-					docker run --name test-container -p 8081:8080 -d jackbruce318/cw2-server:1.0
+					docker image inspect jackbruce318/cw2-server:2.0
+					docker run --name test-container -p 8081:8080 -d jackbruce318/cw2-server:2.0
 					docker ps
 					docker stop test-container
 					docker rm test-container
