@@ -9,7 +9,7 @@ pipeline {
 		stage('Docker Image Build') {
 			steps {
 				echo 'Building Docker Image...'
-				sh 'docker build --tag jackbruce318/cw2-server:5.0 .'
+				sh 'docker build --tag jackbruce318/cw2-server:6.0 .'
 				echo 'Docker Image built successfully!'
 			}
 		}
@@ -18,8 +18,8 @@ pipeline {
 			steps {
 				echo 'Testing Docker Image...'
 				sh '''
-					docker image inspect jackbruce318/cw2-server:5.0
-					docker run --name test-container -p 8081:8080 -d jackbruce318/cw2-server:5.0
+					docker image inspect jackbruce318/cw2-server:6.0
+					docker run --name test-container -p 8081:8080 -d jackbruce318/cw2-server:6.0
 					docker ps
 					docker stop test-container
 					docker rm test-container
@@ -35,7 +35,7 @@ pipeline {
 
 		stage('DockerHub Image Push') {
 			steps {
-				sh 'docker push jackbruce318/cw2-server:5.0'
+				sh 'docker push jackbruce318/cw2-server:6.0'
 			}
 		}
 
@@ -43,7 +43,7 @@ pipeline {
 			steps {
 				sshagent(['my-k8s-key']) {
 					sh ''' 
-						ssh -tt ubuntu@3.91.241.177 "pwd && kubectl set image deployment/cw2-test cw2-server=jackbruce318/cw2-server:5.0"
+						ssh -tt ubuntu@3.91.241.177 "pwd && kubectl set image deployment/cw2-test cw2-server=jackbruce318/cw2-server:6.0"
 					'''
 				}
 			}			
