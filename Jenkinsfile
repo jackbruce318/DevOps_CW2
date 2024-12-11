@@ -41,7 +41,7 @@ pipeline {
 
 		stage('Deploy Image') {
 			steps {
-				sshagent(['my_k8s_key']) {
+				sshagent(['my-k8s-key']) {
 					sh ''' 
 						ssh -tt ubuntu@3.91.241.177 "pwd && kubectl set image deployment/cw2-test cw2-server=jackbruce318/cw2-server:2.0"
 					'''
