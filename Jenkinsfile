@@ -44,8 +44,7 @@ pipeline {
 				sshagent(['my-k8s-key']) {
 					sh '''
 						ssh -tt ubuntu@3.95.173.60 "pwd"
-						minikube start
-						kubectl create deployment cw2-deployment --image=jackbruce318/cw2-server:1.0
+						cw2-test=jackbruce318/cw2-server:1.0
 					'''
 				}
 			}			
