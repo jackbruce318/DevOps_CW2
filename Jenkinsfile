@@ -35,7 +35,7 @@ pipeline {
 
 		stage('DockerHub Image Push') {
 			steps {
-				sh 'docker push jackbruce318/cw2-server:1.0'
+				sh 'docker push jackbruce318/cw2-server:2.0'
 			}
 		}
 
@@ -43,7 +43,7 @@ pipeline {
 			steps {
 				sshagent(['my-k8s-key']) {
 					sh '''
-						ssh -tt ubuntu@3.91.241.177 "pwd && kubectl set image deployments/cw2-test && cw2-test=jackbruce318/cw2-server:1.0"
+						ssh -tt ubuntu@3.91.241.177 "pwd && kubectl set image deployments/cw2-test && cw2-test=jackbruce318/cw2-server:2.0"
 					'''
 				}
 			}			
