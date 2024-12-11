@@ -41,7 +41,7 @@ pipeline {
 
 		stage('Deploy Image') {
 			steps {
-				sshagent(['prod-server-key']) {
+				sshagent(['prod_server_key']) {
 					sh '''
 						pwd 
 						kubectl set image deployment/cw2-test cw2-server=jackbruce318/cw2-server:2.0"
